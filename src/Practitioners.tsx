@@ -130,51 +130,51 @@ function gatherPractitioners(orgID: string) {
 }
 
 function injectRelationShips(relationships: Map<string, PractitionerRole>) {
-      // Now inject the relationships into the table.
-      // That's ugly but an afterthought, soz.
-      relationships.forEach((relationship) => {
-        const practitionerID = relationship.practitioner?.reference?.split('/')[1]
-        if (practitionerID === undefined) {
-          return
-        }
-        const practitionerRow = document.getElementById(practitionerID) as HTMLTableRowElement
-        if (practitionerRow === null) {
-          return
-        }
-        if (relationship.specialty === undefined) {
-          return
-        }
-        if (relationship.specialty.length === 0) {
-          return
-        }
-        const speciality = relationship.specialty[0]
-        const specialityDisplay = speciality.coding?.[0].display
-        // The if/else is to cope with duplicates (which shouldn't happen in the first place, but...)
-        if (practitionerRow.cells.length < 4) {
-          practitionerRow.insertCell(3).innerHTML = specialityDisplay ?? ''
-        } else {
-          practitionerRow.cells[3].innerHTML = specialityDisplay ?? ''
-        }
-        const removeButton = document.createElement('input')
-        removeButton.setAttribute('type', 'submit')
-        removeButton.setAttribute('value', 'Remove')
-        const roleID = relationship.id
-        if (roleID === undefined) {
-          return
-        }
-        removeButton.setAttribute('id', roleID)
-        const removeCell = document.createElement('td')
-        removeCell.appendChild(removeButton)
-        practitionerRow.appendChild(removeCell)
-        removeButton.addEventListener('click', () => {
-          client.delete({resourceType: 'PractitionerRole', id: roleID})
-          .then(() => {
-            window.location.reload()
-          }).catch((err) => {
-            console.log(err)
-          })
+  // Now inject the relationships into the table.
+  // That's ugly but an afterthought, soz.
+  relationships.forEach((relationship) => {
+    const practitionerID = relationship.practitioner?.reference?.split('/')[1]
+    if (practitionerID === undefined) {
+      return
+    }
+    const practitionerRow = document.getElementById(practitionerID) as HTMLTableRowElement
+    if (practitionerRow === null) {
+      return
+    }
+    if (relationship.specialty === undefined) {
+      return
+    }
+    if (relationship.specialty.length === 0) {
+      return
+    }
+    const speciality = relationship.specialty[0]
+    const specialityDisplay = speciality.coding?.[0].display
+    // The if/else is to cope with duplicates (which shouldn't happen in the first place, but...)
+    if (practitionerRow.cells.length < 4) {
+      practitionerRow.insertCell(3).innerHTML = specialityDisplay ?? ''
+    } else {
+      practitionerRow.cells[3].innerHTML = specialityDisplay ?? ''
+    }
+    const removeButton = document.createElement('input')
+    removeButton.setAttribute('type', 'submit')
+    removeButton.setAttribute('value', 'Remove')
+    const roleID = relationship.id
+    if (roleID === undefined) {
+      return
+    }
+    removeButton.setAttribute('id', roleID)
+    const removeCell = document.createElement('td')
+    removeCell.appendChild(removeButton)
+    practitionerRow.appendChild(removeCell)
+    removeButton.addEventListener('click', () => {
+      client.delete({ resourceType: 'PractitionerRole', id: roleID })
+        .then(() => {
+          window.location.reload()
+        }).catch((err) => {
+          console.log(err)
         })
-      })
+    })
+  })
 }
 
 
@@ -417,7 +417,7 @@ function getRoleDropdown(practitionerID: string, orgID: string): HTMLSelectEleme
   return select
 }
 
-function showModal(){
+function showModal() {
   const modal = document.createElement('dialog')
   modal.setAttribute('id', 'modal')
   modal.setAttribute('open', 'true')
