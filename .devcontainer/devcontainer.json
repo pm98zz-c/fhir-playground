@@ -1,0 +1,41 @@
+{
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": {
+			"UserName": "${localEnv:USER}"
+		}
+	},
+	"containerEnv": {
+		"CI_COMMIT_BRANCH": "dev"
+	},
+    "initializeCommand": "docker network create --subnet=172.30.0.0/16 fhir || exit 0",
+	"workspaceMount": "source=${localWorkspaceFolder},target=${localWorkspaceFolder},type=bind",
+	"workspaceFolder": "${localWorkspaceFolder}",
+	"postCreateCommand": [
+        "sudo",
+		"chown",
+		"-R",
+		"${localEnv:USER}:${localEnv:USER}",
+		"/home/${localEnv:USER}"
+	],
+	"name": "FHIR",
+	"runArgs": [
+		"--name",
+		"fhir",
+		"--ip",
+		"172.30.0.3",
+		"--hostname",
+		"fhir",
+        "-v",
+        "/var/run/docker.sock:/var/run/docker.sock",
+        "--net",
+		"fhir"
+	],
+	"overrideCommand": true,
+	"extensions": [
+		"redhat.vscode-commons",
+		"timonwong.shellcheck",
+		"github.copilot",
+		"Semgrep.semgrep"
+	]
+}

@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  max-height: 3em;
+  pointer-events: none;
+}
+
+.App-header {
+  max-height: 10rem;
+}
+
