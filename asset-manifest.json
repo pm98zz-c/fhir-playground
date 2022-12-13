@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/fhir-playground/static/css/main.ac0e1d32.css",
+    "main.js": "/fhir-playground/static/js/main.1ba70fa3.js",
+    "static/media/logo.svg": "/fhir-playground/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/fhir-playground/index.html",
+    "main.ac0e1d32.css.map": "/fhir-playground/static/css/main.ac0e1d32.css.map",
+    "main.1ba70fa3.js.map": "/fhir-playground/static/js/main.1ba70fa3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ac0e1d32.css",
+    "static/js/main.1ba70fa3.js"
+  ]
+}
