@@ -2,7 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://pm98zz-c.github.io/fhir-playground",
+  "homepage": "http://pm98zz-c.github.io/fhir-playground",
   "dependencies": {
     "@picocss/pico": "^1.5.6",
     "@testing-library/jest-dom": "^5.14.1",
